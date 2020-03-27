@@ -9,61 +9,28 @@
 import SwiftUI
 import CoreServices
 
-var imageURLs:[Int:String] = [1:"img3url",2:"img4url"]
-
 struct ContentView: View {
-
-
-  
-//    let img2url = Bundle.main.url(forResource: "rdot", withExtension: "png")
-    let img3url = URL(fileURLWithPath:(Bundle.main.resourcePath! + "/Images/bdot.png"))
-    let img4url = URL(fileURLWithPath:(Bundle.main.resourcePath! + "/Images/rdot.png"))
-
-
-  @State var img1url: URL?
-  @State var img2url: URL?
-  @State var show = false
-    
     var body: some View {
         HStack {
-            Text("fuck").onAppear {
-              
-              let fucker = Bundle.main.resourcePath! + "/Images/dot.png"
-              self.img2url = URL(fileURLWithPath: fucker)
-              if let resourcePath = Bundle.main.resourcePath {
-                let imgName = "/ydot.png"
-                let path = resourcePath + imgName
-                print("path ",path)
-                self.img1url = URL(fileURLWithPath: path)
-                self.show = true
-                print("img2url ",self.img2url,fucker)
-                
-              }
+            VStack {
+                DragableImage(name: "rdot")
+                DragableImage(name: "gdot")
             }
             VStack {
-              Text("fuck")
-              if show {
-                DragableImage(url: "rdot")
-                DragableImage(url: "gdot")
-              }
+                DragableImage(name: "bdot")
+                DragableImage(name: "ydot")
+                DragableImage(name: "pdot")
             }
-            
-            VStack {
-              Text("fuck")
-                DragableImage(url: "bdot")
-                DragableImage(url: "ydot")
-            }
-            
             DroppableArea()
         }.padding(40)
     }
     
     struct DragableImage: View {
-        let url: String
+        let name: String
         var body: some View {
-              Image(url)
+              Image(name)
                 .resizable()
-                .frame(width: 150, height: 150)
+                .frame(width: 80, height: 80)
                 .clipShape(Circle())
                 .overlay(Circle().stroke(Color.white, lineWidth: 2))
                 .padding(2)
@@ -71,13 +38,7 @@ struct ContentView: View {
                 .shadow(radius: 3)
                 .padding(4)
                 .onDrag {
-                  print("self.url ",self.url)
-                  
-                  return NSItemProvider(object: self.url as NSItemProviderWriting) }
-                .onAppear {
-                  print("Dragable ",self.url)
-                }
-                
+                  return NSItemProvider(object: self.name as NSItemProviderWriting) }
         }
     }
     
@@ -87,28 +48,59 @@ struct ContentView: View {
         
         var body: some View {
             let dropDelegate = MyDropDelegate(imageUrls: $imageUrls, active: $active)
-            print("URL 0",self.imageUrls[self.active])
-            return VStack {
-                HStack {
-                    GridCell(active: self.active == 1, url: imageUrls[1])
-                    GridCell(active: self.active == 3, url: imageUrls[3])
+            return VStack(alignment: .center, spacing: 5) {
+                HStack(alignment: .center, spacing: 5) {
+                    GridCell(active: self.active == 1, url: imageUrls[1]).onTapGesture {
+//                      withAnimation(.linear(duration: 0.25)){
+//                        Image(systemName: "star")
+//                      }
+                    }
+                    GridCell(active: self.active == 2, url: imageUrls[2]).border(Color.blue)
+                    GridCell(active: self.active == 3, url: imageUrls[3]).border(Color.blue)
+                    GridCell(active: self.active == 4, url: imageUrls[4]).border(Color.blue)
+                    GridCell(active: self.active == 5, url: imageUrls[5]).border(Color.blue)
                 }
-                HStack {
-                    GridCell(active: self.active == 2, url: imageUrls[2])
-                    GridCell(active: self.active == 4, url: imageUrls[4])
+                HStack(alignment: .center, spacing: 5) {
+                    GridCell(active: self.active == 6, url: imageUrls[6]).border(Color.blue)
+                    GridCell(active: self.active == 7, url: imageUrls[7]).border(Color.blue)
+                    GridCell(active: self.active == 8, url: imageUrls[8]).border(Color.blue)
+                    GridCell(active: self.active == 9, url: imageUrls[9]).border(Color.blue)
+                    GridCell(active: self.active == 10, url: imageUrls[10]).border(Color.blue)
+                }
+                HStack(alignment: .center, spacing: 5) {
+                    GridCell(active: self.active == 11, url: imageUrls[11]).border(Color.blue)
+                    GridCell(active: self.active == 12, url: imageUrls[12]).border(Color.blue)
+                    GridCell(active: self.active == 13, url: imageUrls[13]).border(Color.blue)
+                    GridCell(active: self.active == 14, url: imageUrls[14]).border(Color.blue)
+                    GridCell(active: self.active == 15, url: imageUrls[15]).border(Color.blue)
+                }
+                HStack(alignment: .center, spacing: 5) {
+                    GridCell(active: self.active == 16, url: imageUrls[16]).border(Color.blue)
+                    GridCell(active: self.active == 17, url: imageUrls[17]).border(Color.blue)
+                    GridCell(active: self.active == 18, url: imageUrls[18]).border(Color.blue)
+                    GridCell(active: self.active == 19, url: imageUrls[19]).border(Color.blue)
+                    GridCell(active: self.active == 20, url: imageUrls[20]).border(Color.blue)
+                }
+                HStack(alignment: .center, spacing: 5) {
+                    GridCell(active: self.active == 21, url: imageUrls[21]).border(Color.blue)
+                    GridCell(active: self.active == 22, url: imageUrls[22]).border(Color.blue)
+                    GridCell(active: self.active == 23, url: imageUrls[23]).border(Color.blue)
+                    GridCell(active: self.active == 24, url: imageUrls[24]).border(Color.blue)
+                    GridCell(active: self.active == 25, url: imageUrls[25]).border(Color.blue)
                 }
                 
             }
             .background(Rectangle().fill(Color.gray))
-            .frame(width: 300, height: 300)
+            .frame(width: 400, height: 400)
+            .position(x: 256, y: 256)
             .onDrop(of: [kUTTypeData as String], delegate: dropDelegate)
-            
         }
     }
     
   
     
     struct GridCell: View {
+    
         let active: Bool
         let url: String?
         
@@ -116,18 +108,18 @@ struct ContentView: View {
                 if url == nil {
                   let img = Image(systemName: "photo")
                   .resizable()
-                  .frame(width: 150, height: 150)
+                  .frame(width: 80, height: 80)
                   return Rectangle()
                   .fill(self.active ? Color.green : Color.clear)
-                  .frame(width: 150, height: 150)
+                  .frame(width: 80, height: 80)
                   .overlay(img)
                 } else {
                   let img = Image(url!)
                   .resizable()
-                  .frame(width: 150, height: 150)
+                  .frame(width: 80, height: 80)
                   return Rectangle()
                 .fill(self.active ? Color.green : Color.clear)
-                .frame(width: 150, height: 150)
+                .frame(width: 80, height: 80)
                 .overlay(img)
                 }
         }
@@ -138,9 +130,7 @@ struct ContentView: View {
         @Binding var active: Int
         
         func validateDrop(info: DropInfo) -> Bool {
-//            return info.hasItemsConforming(to: ["public.file-url"])
-//            print("validate Drop")
-            return true
+          return info.hasItemsConforming(to: ["kUTTypeData as String"])
         }
         
         func dropEntered(info: DropInfo) {
@@ -148,27 +138,20 @@ struct ContentView: View {
         }
         
         func performDrop(info: DropInfo) -> Bool {
-//            print("do drop")
-            
             let gridPosition = getGridPosition(location: info.location)
+            print("location ",info.location)
             self.active = gridPosition
-            
             if let item = info.itemProviders(for: [kUTTypeData as String]).first {
                 item.loadItem(forTypeIdentifier: kUTTypeData as String, options: nil) { (urlData, error) in
-//                    print("grid ",gridPosition,self.imageUrls[gridPosition]! )
                     DispatchQueue.main.async {
                         if let urlData = urlData as? Data {
-                          
-                          let str = String(decoding: urlData, as: UTF8.self)
-                          print("urlData ",urlData,str)
-//                            self.imageUrls[gridPosition] = NSURL(absoluteURLWithDataRepresentation: urlData, relativeTo: nil) as URL
+                         let str = String(decoding: urlData, as: UTF8.self)
+                         print("urlData ",urlData,str)
                          self.imageUrls[gridPosition] = str
                         }
                     }
                 }
-                
                 return true
-                
             } else {
                 return false
             }
@@ -185,21 +168,18 @@ struct ContentView: View {
             self.active = 0
         }
         
+        
+        
         func getGridPosition(location: CGPoint) -> Int {
             
-            let midXPoint:CGFloat = 640
-            let midYPoint:CGFloat = 320
-            if location.x > midXPoint && location.y > midYPoint {
-                return 4
-            } else if location.x > midXPoint && location.y < midYPoint {
-                return 3
-            } else if location.x < midXPoint && location.y > midYPoint {
-                return 2
-            } else if location.x < midXPoint && location.y < midYPoint {
-                return 1
-            } else {
-                return 0
-            }
+            let calcX = round((location.x - 358) / 95) + 1
+            let calcY = round((location.y - 148) / 95)
+            
+            print("calcX ",calcX, "calcY ",calcY)
+            
+            return Int(round(calcX + (calcY * 5)))
+        
+            
         }
     }
 }
@@ -209,3 +189,18 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+//            Text("fuck").onAppear {
+//
+//              let fucker = Bundle.main.resourcePath! + "/Images/dot.png"
+//              self.img2url = URL(fileURLWithPath: fucker)
+//              if let resourcePath = Bundle.main.resourcePath {
+//                let imgName = "/ydot.png"
+//                let path = resourcePath + imgName
+//                print("path ",path)
+//                self.img1url = URL(fileURLWithPath: path)
+//                self.show = true
+//                print("img2url ",self.img2url,fucker)
+//
+//              }
+//            }

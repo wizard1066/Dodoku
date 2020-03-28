@@ -23,27 +23,6 @@ struct ContentView: View {
     }
 }
     
-    
-//        HStack {
-//            VStack {
-//                DragableImage(name: "rdot")
-//                DragableImage(name: "gdot")
-//                DragableImage(name: "bdot")
-//                DragableImage(name: "odot")
-//                }.padding(5)
-//            VStack {
-//                DragableImage(name: "ydot")
-//                DragableImage(name: "pdot")
-//                DragableImage(name: "fdot")
-//                DragableImage(name: "tdot")
-//            }.padding(5)
-//            DroppableArea()
-//        }.padding(0)
-//    }
-    
-
-
-    
     struct GridStack<Content: View>: View {
     let rows: Int
     let columns: Int
@@ -104,7 +83,7 @@ struct ContentView: View {
         
         var body: some View {
             print("index ",index)
-            let dropDelegate = MyDropDelegate(imageUrls: $imageUrls, active: $active)
+            let dropDelegate = TheDropDelegate(imageUrls: $imageUrls, active: $active)
             return GridStack(rows: 4, columns: 4) { row, col in
               GridCell(active: self.active == self.index - row + (col * 4), url: self.imageUrls[self.index - row + (col * 4)])
                     .onTapGesture {
@@ -114,309 +93,6 @@ struct ContentView: View {
           }.onDrop(of: [kUTTypeData as String], delegate: dropDelegate)
         }
     }
-    
-    struct DroppableArea: View {
-        @State private var imageUrls: [Int: String] = [:]
-        @State private var active = 0
-        
-        var body: some View {
-            let dropDelegate = MyDropDelegate(imageUrls: $imageUrls, active: $active)
-            return VStack(alignment: .center, spacing: 5) {
-//                Grid(zipX: 1, zipY: 0, color: Color.yellow)
-//                Grid(zipX: 1, zipY: 5, color: Color.yellow)
-                HStack(alignment: .center, spacing: 5) {
-                    GridCell(active: self.active == 1, url: imageUrls[1])
-                    .onTapGesture {
-                      self.imageUrls[1] = nil
-                    }
-                    GridCell(active: self.active == 2, url: imageUrls[2])
-                    .onTapGesture {
-                      self.imageUrls[2] = nil
-                    }
-                    GridCell(active: self.active == 3, url: imageUrls[3])
-                    .onTapGesture {
-                      self.imageUrls[3] = nil
-                    }
-                    GridCell(active: self.active == 4, url: imageUrls[4])
-                    .onTapGesture {
-                      self.imageUrls[4] = nil
-                    }
-                    GridCell(active: self.active == 5, url: imageUrls[5])
-                    .onTapGesture {
-                      self.imageUrls[5] = nil
-                    }
-                    GridCell(active: self.active == 6, url: imageUrls[6])
-                    .onTapGesture {
-                      self.imageUrls[6] = nil
-                    }
-                    GridCell(active: self.active == 7, url: imageUrls[7])
-                    .onTapGesture {
-                      self.imageUrls[7] = nil
-                    }
-                    GridCell(active: self.active == 8, url: imageUrls[8])
-                    .onTapGesture {
-                      self.imageUrls[8] = nil
-                    }
-                }
-                HStack(alignment: .center, spacing: 5) {
-                    GridCell(active: self.active == 9, url: imageUrls[9])
-                    .onTapGesture {
-                      self.imageUrls[9] = nil
-                    }
-                    GridCell(active: self.active == 10, url: imageUrls[10])
-                    .onTapGesture {
-                      self.imageUrls[10] = nil
-                    }
-                    GridCell(active: self.active == 11, url: imageUrls[11])
-                    .onTapGesture {
-                      self.imageUrls[11] = nil
-                    }
-                    GridCell(active: self.active == 12, url: imageUrls[12])
-                    .onTapGesture {
-                      self.imageUrls[12] = nil
-                    }
-                    GridCell(active: self.active == 13, url: imageUrls[13])
-                    .onTapGesture {
-                      self.imageUrls[13] = nil
-                    }
-                    GridCell(active: self.active == 14, url: imageUrls[14])
-                    .onTapGesture {
-                      self.imageUrls[14] = nil
-                    }
-                    GridCell(active: self.active == 15, url: imageUrls[15])
-                    .onTapGesture {
-                      self.imageUrls[15] = nil
-                    }
-                    GridCell(active: self.active == 16, url: imageUrls[16])
-                    .onTapGesture {
-                      self.imageUrls[16] = nil
-                    }
-                }
-                HStack(alignment: .center, spacing: 5) {
-                    GridCell(active: self.active == 17, url: imageUrls[17])
-                    .onTapGesture {
-                      self.imageUrls[17] = nil
-                    }
-                    GridCell(active: self.active == 18, url: imageUrls[18])
-                    .onTapGesture {
-                      self.imageUrls[18] = nil
-                    }
-                    GridCell(active: self.active == 19, url: imageUrls[19])
-                    .onTapGesture {
-                      self.imageUrls[19] = nil
-                    }
-                    GridCell(active: self.active == 20, url: imageUrls[20])
-                    .onTapGesture {
-                      self.imageUrls[20] = nil
-                    }
-                    GridCell(active: self.active == 21, url: imageUrls[21])
-                    .onTapGesture {
-                      self.imageUrls[21] = nil
-                    }
-                    GridCell(active: self.active == 22, url: imageUrls[22])
-                    .onTapGesture {
-                      self.imageUrls[22] = nil
-                    }
-                    GridCell(active: self.active == 23, url: imageUrls[23])
-                    .onTapGesture {
-                      self.imageUrls[23] = nil
-                    }
-                    GridCell(active: self.active == 24, url: imageUrls[24])
-                    .onTapGesture {
-                      self.imageUrls[24] = nil
-                    }
-                }
-                HStack(alignment: .center, spacing: 5) {
-                    GridCell(active: self.active == 25, url: imageUrls[25])
-                    .onTapGesture {
-                      self.imageUrls[25] = nil
-                    }
-                    GridCell(active: self.active == 26, url: imageUrls[26])
-                    .onTapGesture {
-                      self.imageUrls[26] = nil
-                    }
-                    GridCell(active: self.active == 27, url: imageUrls[27])
-                    .onTapGesture {
-                      self.imageUrls[27] = nil
-                    }
-                    GridCell(active: self.active == 28, url: imageUrls[28])
-                    .onTapGesture {
-                      self.imageUrls[28] = nil
-                    }
-                    GridCell(active: self.active == 29, url: imageUrls[29])
-                    .onTapGesture {
-                      self.imageUrls[29] = nil
-                    }
-                    GridCell(active: self.active == 30, url: imageUrls[30])
-                    .onTapGesture {
-                      self.imageUrls[30] = nil
-                    }
-                    GridCell(active: self.active == 31, url: imageUrls[31])
-                    .onTapGesture {
-                      self.imageUrls[31] = nil
-                    }
-                    GridCell(active: self.active == 32, url: imageUrls[32])
-                    .onTapGesture {
-                      self.imageUrls[32] = nil
-                    }
-              }
-              HStack(alignment: .center, spacing: 5) {
-                    GridCell(active: self.active == 33, url: imageUrls[33])
-                    .onTapGesture {
-                      self.imageUrls[33] = nil
-                    }
-                    GridCell(active: self.active == 34, url: imageUrls[34])
-                    .onTapGesture {
-                      self.imageUrls[34] = nil
-                    }
-                    GridCell(active: self.active == 35, url: imageUrls[35])
-                    .onTapGesture {
-                      self.imageUrls[35] = nil
-                    }
-                    GridCell(active: self.active == 36, url: imageUrls[36])
-                    .onTapGesture {
-                      self.imageUrls[36] = nil
-                    }
-                    GridCell(active: self.active == 33, url: imageUrls[33])
-                    .onTapGesture {
-                      self.imageUrls[33] = nil
-                    }
-                    GridCell(active: self.active == 34, url: imageUrls[34])
-                    .onTapGesture {
-                      self.imageUrls[34] = nil
-                    }
-                    GridCell(active: self.active == 35, url: imageUrls[35])
-                    .onTapGesture {
-                      self.imageUrls[35] = nil
-                    }
-                    GridCell(active: self.active == 36, url: imageUrls[36])
-                    .onTapGesture {
-                      self.imageUrls[36] = nil
-                    }
-                }
-                HStack(alignment: .center, spacing: 5) {
-                    GridCell(active: self.active == 37, url: imageUrls[37])
-                    .onTapGesture {
-                      self.imageUrls[37] = nil
-                    }
-                    GridCell(active: self.active == 38, url: imageUrls[38])
-                    .onTapGesture {
-                      self.imageUrls[38] = nil
-                    }
-                    GridCell(active: self.active == 39, url: imageUrls[39])
-                    .onTapGesture {
-                      self.imageUrls[39] = nil
-                    }
-                    GridCell(active: self.active == 40, url: imageUrls[40])
-                    .onTapGesture {
-                      self.imageUrls[40] = nil
-                    }
-                    GridCell(active: self.active == 41, url: imageUrls[41])
-                    .onTapGesture {
-                      self.imageUrls[41] = nil
-                    }
-                    GridCell(active: self.active == 42, url: imageUrls[42])
-                    .onTapGesture {
-                      self.imageUrls[42] = nil
-                    }
-                    GridCell(active: self.active == 43, url: imageUrls[43])
-                    .onTapGesture {
-                      self.imageUrls[43] = nil
-                    }
-                    GridCell(active: self.active == 44, url: imageUrls[44])
-                    .onTapGesture {
-                      self.imageUrls[44] = nil
-                    }
-                }
-                HStack(alignment: .center, spacing: 5) {
-                    GridCell(active: self.active == 45, url: imageUrls[45])
-                    .onTapGesture {
-                      self.imageUrls[45] = nil
-                    }
-                    GridCell(active: self.active == 46, url: imageUrls[46])
-                    .onTapGesture {
-                      self.imageUrls[46] = nil
-                    }
-                    GridCell(active: self.active == 47, url: imageUrls[47])
-                    .onTapGesture {
-                      self.imageUrls[47] = nil
-                    }
-                    GridCell(active: self.active == 48, url: imageUrls[48])
-                    .onTapGesture {
-                      self.imageUrls[48] = nil
-                    }
-                    GridCell(active: self.active == 49, url: imageUrls[49])
-                    .onTapGesture {
-                      self.imageUrls[49] = nil
-                    }
-                    GridCell(active: self.active == 50, url: imageUrls[50])
-                    .onTapGesture {
-                      self.imageUrls[50] = nil
-                    }
-                    GridCell(active: self.active == 51, url: imageUrls[51])
-                    .onTapGesture {
-                      self.imageUrls[51] = nil
-                    }
-                    GridCell(active: self.active == 52, url: imageUrls[52])
-                    .onTapGesture {
-                      self.imageUrls[52] = nil
-                    }
-                }
-                HStack(alignment: .center, spacing: 5) {
-                    GridCell(active: self.active == 53, url: imageUrls[53])
-                    .onTapGesture {
-                      self.imageUrls[53] = nil
-                    }
-                    GridCell(active: self.active == 54, url: imageUrls[54])
-                    .onTapGesture {
-                      self.imageUrls[54] = nil
-                    }
-                    GridCell(active: self.active == 55, url: imageUrls[55])
-                    .onTapGesture {
-                      self.imageUrls[55] = nil
-                    }
-                    GridCell(active: self.active == 56, url: imageUrls[56])
-                    .onTapGesture {
-                      self.imageUrls[56] = nil
-                    }
-                    GridCell(active: self.active == 57, url: imageUrls[57])
-                    .onTapGesture {
-                      self.imageUrls[57] = nil
-                    }
-                    GridCell(active: self.active == 58, url: imageUrls[58])
-                    .onTapGesture {
-                      self.imageUrls[58] = nil
-                    }
-                    GridCell(active: self.active == 59, url: imageUrls[59])
-                    .onTapGesture {
-                      self.imageUrls[59] = nil
-                    }
-                    GridCell(active: self.active == 60, url: imageUrls[60])
-                    .onTapGesture {
-                      self.imageUrls[60] = nil
-                    }
-                }
-                
-            }
-            .background(Rectangle().fill(Color.gray))
-            .frame(width: 400, height: 400)
-            .onDrop(of: [kUTTypeData as String], delegate: dropDelegate)
-        }
-    }
-    
-//    struct GridCellV: View {
-//      let active: Bool
-//      @State var url: String?
-//
-//      var body: some View {
-//        GridCell(active: self.active == active, url: url)
-//          .onTapGesture {
-//            self.url = nil
-//        }
-//      }
-//    }
-    
-  
     
     struct GridCell: View {
     
@@ -444,9 +120,10 @@ struct ContentView: View {
         }
     }
     
-    struct MyDropDelegate: DropDelegate {
+    struct TheDropDelegate: DropDelegate {
         @Binding var imageUrls: [Int: String]
         @Binding var active: Int
+        
         
         func validateDrop(info: DropInfo) -> Bool {
           return info.hasItemsConforming(to: ["kUTTypeData as String"])
@@ -518,3 +195,321 @@ struct ContentView_Previews: PreviewProvider {
 //
 //              }
 //            }
+//    struct DroppableArea: View {
+//        @State private var imageUrls: [Int: String] = [:]
+//        @State private var active = 0
+//
+//        var body: some View {
+//            let dropDelegate = MyDropDelegate(imageUrls: $imageUrls, active: $active)
+//            return VStack(alignment: .center, spacing: 5) {
+////                Grid(zipX: 1, zipY: 0, color: Color.yellow)
+////                Grid(zipX: 1, zipY: 5, color: Color.yellow)
+//                HStack(alignment: .center, spacing: 5) {
+//                    GridCell(active: self.active == 1, url: imageUrls[1])
+//                    .onTapGesture {
+//                      self.imageUrls[1] = nil
+//                    }
+//                    GridCell(active: self.active == 2, url: imageUrls[2])
+//                    .onTapGesture {
+//                      self.imageUrls[2] = nil
+//                    }
+//                    GridCell(active: self.active == 3, url: imageUrls[3])
+//                    .onTapGesture {
+//                      self.imageUrls[3] = nil
+//                    }
+//                    GridCell(active: self.active == 4, url: imageUrls[4])
+//                    .onTapGesture {
+//                      self.imageUrls[4] = nil
+//                    }
+//                    GridCell(active: self.active == 5, url: imageUrls[5])
+//                    .onTapGesture {
+//                      self.imageUrls[5] = nil
+//                    }
+//                    GridCell(active: self.active == 6, url: imageUrls[6])
+//                    .onTapGesture {
+//                      self.imageUrls[6] = nil
+//                    }
+//                    GridCell(active: self.active == 7, url: imageUrls[7])
+//                    .onTapGesture {
+//                      self.imageUrls[7] = nil
+//                    }
+//                    GridCell(active: self.active == 8, url: imageUrls[8])
+//                    .onTapGesture {
+//                      self.imageUrls[8] = nil
+//                    }
+//                }
+//                HStack(alignment: .center, spacing: 5) {
+//                    GridCell(active: self.active == 9, url: imageUrls[9])
+//                    .onTapGesture {
+//                      self.imageUrls[9] = nil
+//                    }
+//                    GridCell(active: self.active == 10, url: imageUrls[10])
+//                    .onTapGesture {
+//                      self.imageUrls[10] = nil
+//                    }
+//                    GridCell(active: self.active == 11, url: imageUrls[11])
+//                    .onTapGesture {
+//                      self.imageUrls[11] = nil
+//                    }
+//                    GridCell(active: self.active == 12, url: imageUrls[12])
+//                    .onTapGesture {
+//                      self.imageUrls[12] = nil
+//                    }
+//                    GridCell(active: self.active == 13, url: imageUrls[13])
+//                    .onTapGesture {
+//                      self.imageUrls[13] = nil
+//                    }
+//                    GridCell(active: self.active == 14, url: imageUrls[14])
+//                    .onTapGesture {
+//                      self.imageUrls[14] = nil
+//                    }
+//                    GridCell(active: self.active == 15, url: imageUrls[15])
+//                    .onTapGesture {
+//                      self.imageUrls[15] = nil
+//                    }
+//                    GridCell(active: self.active == 16, url: imageUrls[16])
+//                    .onTapGesture {
+//                      self.imageUrls[16] = nil
+//                    }
+//                }
+//                HStack(alignment: .center, spacing: 5) {
+//                    GridCell(active: self.active == 17, url: imageUrls[17])
+//                    .onTapGesture {
+//                      self.imageUrls[17] = nil
+//                    }
+//                    GridCell(active: self.active == 18, url: imageUrls[18])
+//                    .onTapGesture {
+//                      self.imageUrls[18] = nil
+//                    }
+//                    GridCell(active: self.active == 19, url: imageUrls[19])
+//                    .onTapGesture {
+//                      self.imageUrls[19] = nil
+//                    }
+//                    GridCell(active: self.active == 20, url: imageUrls[20])
+//                    .onTapGesture {
+//                      self.imageUrls[20] = nil
+//                    }
+//                    GridCell(active: self.active == 21, url: imageUrls[21])
+//                    .onTapGesture {
+//                      self.imageUrls[21] = nil
+//                    }
+//                    GridCell(active: self.active == 22, url: imageUrls[22])
+//                    .onTapGesture {
+//                      self.imageUrls[22] = nil
+//                    }
+//                    GridCell(active: self.active == 23, url: imageUrls[23])
+//                    .onTapGesture {
+//                      self.imageUrls[23] = nil
+//                    }
+//                    GridCell(active: self.active == 24, url: imageUrls[24])
+//                    .onTapGesture {
+//                      self.imageUrls[24] = nil
+//                    }
+//                }
+//                HStack(alignment: .center, spacing: 5) {
+//                    GridCell(active: self.active == 25, url: imageUrls[25])
+//                    .onTapGesture {
+//                      self.imageUrls[25] = nil
+//                    }
+//                    GridCell(active: self.active == 26, url: imageUrls[26])
+//                    .onTapGesture {
+//                      self.imageUrls[26] = nil
+//                    }
+//                    GridCell(active: self.active == 27, url: imageUrls[27])
+//                    .onTapGesture {
+//                      self.imageUrls[27] = nil
+//                    }
+//                    GridCell(active: self.active == 28, url: imageUrls[28])
+//                    .onTapGesture {
+//                      self.imageUrls[28] = nil
+//                    }
+//                    GridCell(active: self.active == 29, url: imageUrls[29])
+//                    .onTapGesture {
+//                      self.imageUrls[29] = nil
+//                    }
+//                    GridCell(active: self.active == 30, url: imageUrls[30])
+//                    .onTapGesture {
+//                      self.imageUrls[30] = nil
+//                    }
+//                    GridCell(active: self.active == 31, url: imageUrls[31])
+//                    .onTapGesture {
+//                      self.imageUrls[31] = nil
+//                    }
+//                    GridCell(active: self.active == 32, url: imageUrls[32])
+//                    .onTapGesture {
+//                      self.imageUrls[32] = nil
+//                    }
+//              }
+//              HStack(alignment: .center, spacing: 5) {
+//                    GridCell(active: self.active == 33, url: imageUrls[33])
+//                    .onTapGesture {
+//                      self.imageUrls[33] = nil
+//                    }
+//                    GridCell(active: self.active == 34, url: imageUrls[34])
+//                    .onTapGesture {
+//                      self.imageUrls[34] = nil
+//                    }
+//                    GridCell(active: self.active == 35, url: imageUrls[35])
+//                    .onTapGesture {
+//                      self.imageUrls[35] = nil
+//                    }
+//                    GridCell(active: self.active == 36, url: imageUrls[36])
+//                    .onTapGesture {
+//                      self.imageUrls[36] = nil
+//                    }
+//                    GridCell(active: self.active == 33, url: imageUrls[33])
+//                    .onTapGesture {
+//                      self.imageUrls[33] = nil
+//                    }
+//                    GridCell(active: self.active == 34, url: imageUrls[34])
+//                    .onTapGesture {
+//                      self.imageUrls[34] = nil
+//                    }
+//                    GridCell(active: self.active == 35, url: imageUrls[35])
+//                    .onTapGesture {
+//                      self.imageUrls[35] = nil
+//                    }
+//                    GridCell(active: self.active == 36, url: imageUrls[36])
+//                    .onTapGesture {
+//                      self.imageUrls[36] = nil
+//                    }
+//                }
+//                HStack(alignment: .center, spacing: 5) {
+//                    GridCell(active: self.active == 37, url: imageUrls[37])
+//                    .onTapGesture {
+//                      self.imageUrls[37] = nil
+//                    }
+//                    GridCell(active: self.active == 38, url: imageUrls[38])
+//                    .onTapGesture {
+//                      self.imageUrls[38] = nil
+//                    }
+//                    GridCell(active: self.active == 39, url: imageUrls[39])
+//                    .onTapGesture {
+//                      self.imageUrls[39] = nil
+//                    }
+//                    GridCell(active: self.active == 40, url: imageUrls[40])
+//                    .onTapGesture {
+//                      self.imageUrls[40] = nil
+//                    }
+//                    GridCell(active: self.active == 41, url: imageUrls[41])
+//                    .onTapGesture {
+//                      self.imageUrls[41] = nil
+//                    }
+//                    GridCell(active: self.active == 42, url: imageUrls[42])
+//                    .onTapGesture {
+//                      self.imageUrls[42] = nil
+//                    }
+//                    GridCell(active: self.active == 43, url: imageUrls[43])
+//                    .onTapGesture {
+//                      self.imageUrls[43] = nil
+//                    }
+//                    GridCell(active: self.active == 44, url: imageUrls[44])
+//                    .onTapGesture {
+//                      self.imageUrls[44] = nil
+//                    }
+//                }
+//                HStack(alignment: .center, spacing: 5) {
+//                    GridCell(active: self.active == 45, url: imageUrls[45])
+//                    .onTapGesture {
+//                      self.imageUrls[45] = nil
+//                    }
+//                    GridCell(active: self.active == 46, url: imageUrls[46])
+//                    .onTapGesture {
+//                      self.imageUrls[46] = nil
+//                    }
+//                    GridCell(active: self.active == 47, url: imageUrls[47])
+//                    .onTapGesture {
+//                      self.imageUrls[47] = nil
+//                    }
+//                    GridCell(active: self.active == 48, url: imageUrls[48])
+//                    .onTapGesture {
+//                      self.imageUrls[48] = nil
+//                    }
+//                    GridCell(active: self.active == 49, url: imageUrls[49])
+//                    .onTapGesture {
+//                      self.imageUrls[49] = nil
+//                    }
+//                    GridCell(active: self.active == 50, url: imageUrls[50])
+//                    .onTapGesture {
+//                      self.imageUrls[50] = nil
+//                    }
+//                    GridCell(active: self.active == 51, url: imageUrls[51])
+//                    .onTapGesture {
+//                      self.imageUrls[51] = nil
+//                    }
+//                    GridCell(active: self.active == 52, url: imageUrls[52])
+//                    .onTapGesture {
+//                      self.imageUrls[52] = nil
+//                    }
+//                }
+//                HStack(alignment: .center, spacing: 5) {
+//                    GridCell(active: self.active == 53, url: imageUrls[53])
+//                    .onTapGesture {
+//                      self.imageUrls[53] = nil
+//                    }
+//                    GridCell(active: self.active == 54, url: imageUrls[54])
+//                    .onTapGesture {
+//                      self.imageUrls[54] = nil
+//                    }
+//                    GridCell(active: self.active == 55, url: imageUrls[55])
+//                    .onTapGesture {
+//                      self.imageUrls[55] = nil
+//                    }
+//                    GridCell(active: self.active == 56, url: imageUrls[56])
+//                    .onTapGesture {
+//                      self.imageUrls[56] = nil
+//                    }
+//                    GridCell(active: self.active == 57, url: imageUrls[57])
+//                    .onTapGesture {
+//                      self.imageUrls[57] = nil
+//                    }
+//                    GridCell(active: self.active == 58, url: imageUrls[58])
+//                    .onTapGesture {
+//                      self.imageUrls[58] = nil
+//                    }
+//                    GridCell(active: self.active == 59, url: imageUrls[59])
+//                    .onTapGesture {
+//                      self.imageUrls[59] = nil
+//                    }
+//                    GridCell(active: self.active == 60, url: imageUrls[60])
+//                    .onTapGesture {
+//                      self.imageUrls[60] = nil
+//                    }
+//                }
+//
+//            }
+//            .background(Rectangle().fill(Color.gray))
+//            .frame(width: 400, height: 400)
+//            .onDrop(of: [kUTTypeData as String], delegate: dropDelegate)
+//        }
+//    }
+    
+//    struct GridCellV: View {
+//      let active: Bool
+//      @State var url: String?
+//
+//      var body: some View {
+//        GridCell(active: self.active == active, url: url)
+//          .onTapGesture {
+//            self.url = nil
+//        }
+//      }
+//    }
+    
+//        HStack {
+//            VStack {
+//                DragableImage(name: "rdot")
+//                DragableImage(name: "gdot")
+//                DragableImage(name: "bdot")
+//                DragableImage(name: "odot")
+//                }.padding(5)
+//            VStack {
+//                DragableImage(name: "ydot")
+//                DragableImage(name: "pdot")
+//                DragableImage(name: "fdot")
+//                DragableImage(name: "tdot")
+//            }.padding(5)
+//            DroppableArea()
+//        }.padding(0)
+//    }
+    
